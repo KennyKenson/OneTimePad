@@ -1,3 +1,5 @@
 public class CypherHandler {
-    System.out.printf("Hello world!");
+    public static void main(String args[]){
+        System.out.printf("Hello world!");
+    }
 }
