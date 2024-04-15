@@ -21,7 +21,7 @@ public class FileHandler {
 
     public static void exportFile(ArrayList<Character> file) {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("src/ExportedMessage.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("ExportedMessage.txt"));
             for (char output : file) {
                 writer.write(output);
             }
