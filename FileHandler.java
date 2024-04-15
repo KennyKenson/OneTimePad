@@ -27,7 +27,7 @@ public class FileHandler {
             }
             writer.close();
         } catch (IOException iox) {
-            System.out.println("Failed to export file.");
+            System.out.print("Failed to export file.");
         }
     }
 
@@ -39,7 +39,7 @@ public class FileHandler {
             }
             writer.close();
         } catch (IOException iox) {
-            System.out.println("Failed to export file.");
+            System.out.print("Failed to export file.");
         }
     }
 
@@ -52,7 +52,7 @@ public class FileHandler {
                 input = reader.read();
             }
         } catch (IOException iox) {
-            System.out.println("Failed to print file to console.");
+            System.out.print("Failed to print file to console.");
         }
     }
 }
