@@ -4,7 +4,6 @@ public class CypherHandler {
 
     public static ArrayList<Character> shaveMessage(ArrayList<Character> message) {
         ArrayList<Character> shavedMessage = new ArrayList<>();
-        int spaceAdder = 0;
         for (char letter : message) {
             if ((letter > 64 && letter < 91) || (letter > 96 && letter < 123) || letter == 10) {
                 if (letter > 96) {
