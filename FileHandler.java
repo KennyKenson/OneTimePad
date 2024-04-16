@@ -19,27 +19,31 @@ public class FileHandler {
         return text;
     }
 
-    public static void exportFile(ArrayList<Character> file) {
+    public static boolean exportFile(ArrayList<Character> file) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("ExportedMessage.txt"));
             for (char output : file) {
                 writer.write(output);
             }
             writer.close();
+            return true;
         } catch (IOException iox) {
             System.out.print("Failed to export file.");
+            return false;
         }
     }
 
-    public static void exportFile(ArrayList<Character> file, String fileName) {
+    public static boolean exportFile(ArrayList<Character> file, String fileName) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
             for (char output : file) {
                 writer.write(output);
             }
             writer.close();
+            return true;
         } catch (IOException iox) {
             System.out.print("Failed to export file.");
+            return false;
         }
     }
 
