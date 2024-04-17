@@ -1,13 +1,43 @@
-import java.io.*;
 import java.util.ArrayList;
-
+import java.util.Random;
 
 public class CypherHandler {
+    public static void main(String args[]){
+        ArrayList<Character> key = FileHandler.importFile("key01.txt");
+        ArrayList<Character> message = FileHandler.importFile("sisters.txt");
+        ArrayList<Character> EncryptedMessage = encryptMessage(message, key);
+        ArrayList<Character> DecryptedMessage = decryptMessage(EncryptedMessage, key);
+        ArrayList<Character> shavedMessage = shaveMessage(message);
+        ArrayList<Character> shavedKey = shaveMessage(key);
+        for (char c : message) {
+            System.out.print(c);
+        }
+        System.out.println("\n");
+        for (char c : shavedMessage) {
+            System.out.print(c);
+        }
+        System.out.println("\n");
+        for (char c : shavedKey) {
+            System.out.print(c);
+        }
+        System.out.println("\n");
+        for (char c : EncryptedMessage) {
+            System.out.print(c);
+//            System.out.print((int)c + " ");
+        }
+        System.out.println("\n");
+        for (char c : DecryptedMessage) {
+            System.out.print(c);
+//            System.out.print((int)c + " ");
+        }
+
+    }
 
     public static ArrayList<Character> shaveMessage(ArrayList<Character> message) {
         ArrayList<Character> shavedMessage = new ArrayList<>();
+        int counter = 0;
         for (char letter : message) {
-            if ((letter > 64 && letter < 91) || (letter > 96 && letter < 123) || letter == 10) {
+            if ((letter > 64 && letter < 91) || (letter > 96 && letter < 123)) {
                 if (letter > 96) {
                     letter -= 32;
                 }
@@ -17,33 +47,68 @@ public class CypherHandler {
         return shavedMessage;
     }
 
-    public static ArrayList<Character> EncryptFile(ArrayList<Character> file, ArrayList<Character> key){
+    public static ArrayList<Character> encryptMessage(ArrayList<Character> message, ArrayList<Character> key){
+        int counter = 1;
+        Random random = new Random();
         int currentLetter;
-        ArrayList<Character> shavedMessage = shaveMessage(file);
-        ArrayList<Character> hiddenMessage = new ArrayList<>();
-        for (int i = 0; i < 500; i++) {
-            currentLetter = shavedMessage.get(i);
-            currentLetter += key.get(i);
-            if (currentLetter > 90) {
-                currentLetter -= 26;
+        ArrayList<Character> shavedMessage = shaveMessage(message);
+        ArrayList<Character> shavedKey = shaveMessage(key);
+        ArrayList<Character> hiddenMessage = new ArrayList<Character>();
+        for (int i = 0; i < key.size(); i++){
+            try {
+                currentLetter = (shavedMessage.get(i) + shavedKey.get(i) - 128);
+                if (counter % 5 == 1 && counter != 1) {
+                    hiddenMessage.add((char)32);
+                }
+                if (counter % 25 == 1){
+                    hiddenMessage.add((char)10);
+                }
+                if (currentLetter > 26){
+                    hiddenMessage.add((char) (currentLetter + 64 - 26));
+                } else {
+                    hiddenMessage.add((char) (currentLetter + 64));
+                }
+                counter++;
+            } catch (IndexOutOfBoundsException ibe) {
+                while (counter % 5 == 1 && counter != 1) {
+                    hiddenMessage.add((char)(random.nextInt(26) + 65));
+                    counter++;
+                }
+                break;
+//                hiddenMessage.add((char)(random.nextInt(26) + 64));
             }
-            hiddenMessage.add((char) currentLetter);
+
         }
         return hiddenMessage;
     }
 
-    public static ArrayList<Character> DecryptFile(ArrayList<Character> file, ArrayList<Character> key){
+    public static ArrayList<Character> decryptMessage(ArrayList<Character> message, ArrayList<Character> key){
         int currentLetter;
-        ArrayList<Character> shavedMessage = shaveMessage(file);
-        ArrayList<Character> revealedMessage = new ArrayList<>();
-        for (int i = 0; i < 500; i++) {
-            currentLetter = shavedMessage.get(i);
-            currentLetter -= key.get(i);
-            if (currentLetter < 65) {
-                currentLetter += 26;
+        int counter = 1;
+        Random random = new Random();
+        ArrayList<Character> shavedMessage = shaveMessage(message);
+        ArrayList<Character> shavedKey = shaveMessage(key);
+        ArrayList<Character> crackedMessage = new ArrayList<Character>();
+        for (int i = 0; i < key.size(); i++){
+            try {
+                currentLetter = (shavedMessage.get(i) - shavedKey.get(i));
+                if (counter % 5 == 1 && counter != 1) {
+                    crackedMessage.add((char)32);
+                }
+                if (counter % 25 == 1){
+                    crackedMessage.add((char)10);
+                }
+                if (currentLetter < 0){
+                    crackedMessage.add((char) (90 + currentLetter));
+                } else {
+                    crackedMessage.add((char) (currentLetter + 64));
+                }
+                counter++;
+            } catch (IndexOutOfBoundsException ibe) {
+                break;
+//                crackedMessage.add((char)(random.nextInt(26) + 65));
             }
-            revealedMessage.add((char) currentLetter);
         }
-        return revealedMessage;
+        return crackedMessage;
     }
 }
