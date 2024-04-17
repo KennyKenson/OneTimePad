@@ -2,36 +2,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class CypherHandler {
-    public static void main(String args[]){
-        ArrayList<Character> key = FileHandler.importFile("key01.txt");
-        ArrayList<Character> message = FileHandler.importFile("sisters.txt");
-        ArrayList<Character> EncryptedMessage = encryptMessage(message, key);
-        ArrayList<Character> DecryptedMessage = decryptMessage(EncryptedMessage, key);
-        ArrayList<Character> shavedMessage = shaveMessage(message);
-        ArrayList<Character> shavedKey = shaveMessage(key);
-        for (char c : message) {
-            System.out.print(c);
-        }
-        System.out.println("\n");
-        for (char c : shavedMessage) {
-            System.out.print(c);
-        }
-        System.out.println("\n");
-        for (char c : shavedKey) {
-            System.out.print(c);
-        }
-        System.out.println("\n");
-        for (char c : EncryptedMessage) {
-            System.out.print(c);
-//            System.out.print((int)c + " ");
-        }
-        System.out.println("\n");
-        for (char c : DecryptedMessage) {
-            System.out.print(c);
-//            System.out.print((int)c + " ");
-        }
-
-    }
 
     public static ArrayList<Character> shaveMessage(ArrayList<Character> message) {
         ArrayList<Character> shavedMessage = new ArrayList<>();
@@ -60,7 +30,7 @@ public class CypherHandler {
                 if (counter % 5 == 1 && counter != 1) {
                     hiddenMessage.add((char)32);
                 }
-                if (counter % 25 == 1){
+                if (counter % 25 == 1 && counter!= 1){
                     hiddenMessage.add((char)10);
                 }
                 if (currentLetter > 26){

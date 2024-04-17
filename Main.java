@@ -66,7 +66,7 @@ public class Main {
             String cipherTextFile = reader.nextLine();
             ArrayList<Character> plainText = FileHandler.importFile(plainTextFile);
             ArrayList<Character> encryptKey = FileHandler.importFile(encryptKeyFile);
-            ArrayList<Character> cipherText = CypherHandler.EncryptFile(plainText, encryptKey);
+            ArrayList<Character> cipherText = CypherHandler.encryptMessage(plainText, encryptKey);
             if (plainTextFile.isEmpty()) {
                 success = FileHandler.exportFile(cipherText);
             } else {
@@ -96,7 +96,7 @@ public class Main {
             String plainTextFile = reader.nextLine();
             ArrayList<Character> cipherText = FileHandler.importFile(cipherTextFile);
             ArrayList<Character> decryptKey = FileHandler.importFile(decryptKeyFile);
-            ArrayList<Character> plainText = CypherHandler.DecryptFile(cipherText, decryptKey);
+            ArrayList<Character> plainText = CypherHandler.decryptMessage(cipherText, decryptKey);
             if (plainTextFile.isEmpty()) {
                 success = FileHandler.exportFile(plainText);
             } else {
