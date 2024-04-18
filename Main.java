@@ -62,7 +62,7 @@ public class Main {
             String plainTextFile = reader.nextLine();
             System.out.print("Enter the filename of the encryption key: ");
             String encryptKeyFile = reader.nextLine();
-            System.out.print("Enter the filename of the plaintext message: ");
+            System.out.print("Enter the filename for the location of the new cipher message: ");
             String cipherTextFile = reader.nextLine();
             ArrayList<Character> plainText = FileHandler.importFile(plainTextFile);
             ArrayList<Character> encryptKey = FileHandler.importFile(encryptKeyFile);
@@ -92,7 +92,7 @@ public class Main {
             String cipherTextFile = reader.nextLine();
             System.out.print("Enter the filename of the decryption key: ");
             String decryptKeyFile = reader.nextLine();
-            System.out.print("Enter the filename of the plaintext message: ");
+            System.out.print("Enter the filename for the location of the new deciphered message: ");
             String plainTextFile = reader.nextLine();
             ArrayList<Character> cipherText = FileHandler.importFile(cipherTextFile);
             ArrayList<Character> decryptKey = FileHandler.importFile(decryptKeyFile);
