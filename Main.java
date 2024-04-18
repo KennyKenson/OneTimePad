@@ -22,7 +22,7 @@ public class Main {
                 3. View  the contents of a file
                 4. Exit
                 
-                > """);
+                >\s""");
         try {
             switch (Integer.parseInt(reader.nextLine())) {
                 case 1:
@@ -39,8 +39,11 @@ public class Main {
                     break;
                 default:
                     System.out.println("Please enter a valid option!");
-                    System.out.print("Enter any key to continue...");
-                    reader.nextLine();
+
+            }
+            if (!ticket) {
+                System.out.print("Enter any key to continue...");
+                reader.nextLine();
             }
         } catch (IllegalArgumentException iae) {
             System.out.println("Please enter a valid option!");
@@ -57,7 +60,7 @@ public class Main {
                 FILE DECRYPTION
                 -+-+-+-+-+-+-+-
                 
-                Enter the filename of the plaintext message: """);
+                Enter the filename of the plaintext message:\s""");
         try {
             String plainTextFile = reader.nextLine();
             System.out.print("Enter the filename of the encryption key: ");
@@ -87,7 +90,7 @@ public class Main {
                 FILE DECRYPTION
                 -+-+-+-+-+-+-+-
                 
-                Enter the filename of the ciphertext message: """);
+                Enter the filename of the ciphertext message:\s""");
         try {
             String cipherTextFile = reader.nextLine();
             System.out.print("Enter the filename of the decryption key: ");
