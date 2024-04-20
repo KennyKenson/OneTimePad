@@ -3,6 +3,13 @@ import java.util.Random;
 
 public class CypherHandler {
 
+    /**
+     * Takes a character arraylist and turns all lowercase letters into uppercase,
+     * and removes all characters which are not letters or new lines.
+     *
+     * @param message The character arraylist which is 'shaved'.
+     * @return The new 'shaved' arraylist.
+     */
     public static ArrayList<Character> shaveMessage(ArrayList<Character> message) {
         ArrayList<Character> shavedMessage = new ArrayList<>();
         int counter = 0;
@@ -17,6 +24,13 @@ public class CypherHandler {
         return shavedMessage;
     }
 
+    /**
+     * Takes a character arraylist and encrypts it with another character arraylist that acts as a cipher.
+     *
+     * @param message The arraylist that is to be encrypted.
+     * @param key The arraylist used to encrypt 'message'.
+     * @return The new encrypted character arraylist.
+     */
     public static ArrayList<Character> encryptMessage(ArrayList<Character> message, ArrayList<Character> key){
         int counter = 1;
         Random random = new Random();
@@ -52,6 +66,13 @@ public class CypherHandler {
         return hiddenMessage;
     }
 
+    /**
+     * Takes a character arraylist and decrypts it with another character arraylist that acts as a cipher.
+     *
+     * @param message The arraylist that is to be decrypted.
+     * @param key The arraylist used to decrypt 'message'.
+     * @return The decrypted arraylist.
+     */
     public static ArrayList<Character> decryptMessage(ArrayList<Character> message, ArrayList<Character> key){
         int currentLetter;
         int counter = 1;

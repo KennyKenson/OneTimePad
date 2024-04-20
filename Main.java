@@ -11,6 +11,14 @@ public class Main {
         }
     }
 
+    /**
+     * The starting menu printed onto the console when the program is initiated.
+     * Can be looped multiple types depending on its return value.
+     * Branches into smaller sub-menus which have their own methods.
+     *
+     * @param ticket Variable brought over from parent function to control while-loop.
+     * @return Determines if the program will be looped or if it will be terminated.
+     */
     public static boolean mainMenu(boolean ticket) {
         System.out.print("""
                 ---------------------------------
@@ -53,6 +61,9 @@ public class Main {
         return ticket;
     }
 
+    /**
+     * Method which acts as interface if user decides to 'Encrypt a file' in mainMenu().
+     */
     public static void encryptMenu() {
         boolean success;
         System.out.print("""
@@ -83,6 +94,9 @@ public class Main {
         }
     }
 
+    /**
+     * Method which acts as interface if user decides to 'Decrypt a file' in mainMenu().
+     */
     public static void decryptMenu() {
         boolean success;
         System.out.print("""
@@ -113,6 +127,9 @@ public class Main {
         }
     }
 
+    /**
+     * Method which acts as interface if user decides to 'View the contents of a file' in mainMenu().
+     */
     public static void viewFileMenu() {
         System.out.print("""
                 +-+-+-+-+-+
